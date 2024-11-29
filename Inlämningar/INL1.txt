@@ -1,0 +1,105 @@
+RPG Inventory
+
+Du ska skapa ett inventory som en spelare skulle kunna ha i 
+ett datorspel. I detta inventory ska en kunna sätta in föremål 
+och ta ut föremål. Insättningen av föremål ska misslyckas om det 
+inte finns plats i detta inventory eller om föremålet väger 
+för mycket. 
+
+Implementera klasserna Inventory och Item samt skapa ett 
+testprogram som kan demonstrera att din implementation av 
+klasserna uppfyller kraven. Du får lägga till hur många fält och 
+metoder till klasserna som du vill så länge alla krav fortfarande 
+uppfylls.
+
+Dela upp era filer rimligt.
+
+-- G
+
+--Item:
+# Klassen ska ha minst två privata fält, ett som representerar vikten 
+# av föremålet som en float och en som representerar namnet. 
+# Konstruktorn ska ta två argument: ett för vikten och ett för 
+# namnet. Om vikten är negativ ska ett exception kastas. Ett item 
+# ska vara omuterbart, vilket betyder att det ska vara omöjligt 
+# att ändra på vikten och namnet av föremålet efter skapandet.
+# (Detta betyder inte att de privata variablerna ska vara const)
+
+--Inventory:
+# Klassen ska ha minst tre privata fält, ett som representerar 
+# dess viktkapacitet som en float, ett som representerar max antal 
+# items och ett som representerar nuvarande lagrade föremål. 
+# Användning av en vektor är reckomenderat.
+
+# Konstruktorn ska ta två argument: ett för dess maxvikt och ett 
+# för dess maxkapacitet av items. Om maxvikten är negativ eller 
+# om maxkapaciteten inte är delbar med 8 ska exception kastas.
+# Olika exceptions för de två olika fallen.
+
+# Föremålskapaciteten och viktkapaciteten ska vara omuterbara, 
+föremålslistan ska vara muterbar, men endast Inventory-klassen 
+själv ska kunna ändra på den.
+
+--Inventory::withdrawItem(string):
+Det ska finnas en metod som tar ett namn och returnerar en Item 
+med samma namn. Metoden ska också ta bort föremålet från 
+föremålslistan. Om föremålet inte hittas ska exception kastas.
+
+--Inventory::depositItem(Item&):
+Det ska finnas en metod som tar en Item-referens som argument 
+och sedan lägger till föremålet i lagret. Detta ska dock 
+misslyckas ifall summan av alla föremål överskrider 
+viktkapaciteten, eller om antalet överskrider föremålskapaciteten. 
+
+Från returvärdet ska användaren kunna veta om adderingen lyckades, 
+om föremålskapaciteten var full, eller viktkapaciteten var full, 
+eller om det var båda. För att göra detta ska du använda dig av en 
+*enum*. Forska hur dessa fungerar på egen hand eller fråga.
+
+--Inventory::getItems()
+Det ska finnas en metod som returnerar en valfri datatyp för att 
+representera föremålslistan. Dock om användaren senare ändrar 
+på den här listan så ska det inte påverka föremålslistan sparad i 
+Inventory.
+
+-- VG
+
+--Inventory:
+Istället för att en plats i lagret ockuperas av ett föremål, så 
+kan föremål "stacka" upp till 64 gånger ifall de har samma namn. 
+Därmed kan 64 items med likadana namn ta en plats i lagret.
+
+Vikt- och föremålskapaciteten ska vara muterbara, men kapaciteterna 
+ska endast kunna öka och inte minska. Föremålskapaciteten måste 
+fortfarande vara jämnt delbart med 8.
+
+--Inventory::withdrawItem(string):
+Metoden ska ta bort ett item från högen av föremål som är minst, 
+ifall det finns flera med samma namn. Observera att det inte 
+får finnas tomma högar efter borttagning av ett föremål.
+
+Istället för att kasta ett exception om föremålet inte finns, så 
+ska metoden returnera en std::optional av Item. Detta är ett 
+snyggare sätt att hantera saknande av värde.
+
+Information om optionals går att hitta här:
+https://medium.com/@saadurr/std-optional-in-c-ca6e5a5d52d6
+
+--Inventory::depositItem(Item&)
+Metoden ska uppdateras så att nya föremål kan "stackas".
+
+---
+
+Uppgiften redovisas muntligt till Niklas på valfri ledig 
+labbperiod. Var beredd på att förklara och diskutera din kod. 
+Om Niklas godkänner din kod ska du därefter skicka in filerna 
+på Totara. Ifall kursen är slut finns det möjlighet att redovisa 
+över internet inom rimlig tid. Kontakta Niklas genom mobil i 
+sådant fall.
+
+Ni får arbeta i par, i vilket fall båda ska lämna in på Totara.
+
+Slutbetyget i kursen bestäms av INL2. VG på INL1 innan kursen är 
+slut gör det lättare att få VG på INL2.
+
+Lycka till!
