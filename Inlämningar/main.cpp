@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ class Item{
  public:
 
     //Ett item ska vara omuterbart
-    Item(const float weight, const string name){
+    Item(const string name, const float weight){
 
         //om vikten är negative kasta execption
         if(weight < 0){
@@ -22,22 +23,32 @@ class Item{
             ItemWeight = weight;
             ItemName = name;}
     }
+
+    string ItemDetails(){
+        return "Item: " + ItemName + " " + to_string(ItemWeight) + "kg";
+    }
+
+    float GetItemWeight(){
+        return ItemWeight;
+    }
+
 };
+
+
 
 //sätta in föremål och ta ut föremål
 class Inventory{
  private:
     float WeightCapacity;
     int MaxItems;
-    vector<Item> Items;
-    
-    //total vikt
-    double TotalWeight;
+    vector<Item> items;
+
+    float TotalWeight;
 
  public:
 
     //Skapar egen vikt och max items
-    Inventory(const float XmxWeight,const int XmxItems){
+    Inventory(const int XmxItems,const float XmxWeight){
 
         //Kasta exception.
         if(XmxWeight < 0){
@@ -51,17 +62,41 @@ class Inventory{
 
     }
 
-    
-    //Pushback items & vikt
-    vector<Item> GetItems(){
-        return Items;
-    }
-    
 
-    // string WithdrawItem(string){}
-    // string DepositItem(Item&){}
-    // string GetItems(){}
-    
+    string WithdrawItem(string){
+        
+        return 0;
+    }
+
+
+    string DepositItem(Item& item){
+        //TODO: fix check if can add item
+        
+        items.push_back(item);
+        return "";
+        
+    }
+
+    string GetItems(){
+        string Total = "";
+        cout << "Inventory\n";
+
+        for(int i = 0; i < items.size(); i++){
+            Total +=items[i].ItemDetails() + "\n";
+        }
+
+        return Total;
+    }
+
+    float SumWeight(){
+        float sum;
+        TotalWeight = sum;
+        for(int i = 0; i < items.size(); i++){
+          sum += items[i].GetItemWeight();
+        }
+
+        return sum;
+    }
 };
 
 
@@ -70,17 +105,28 @@ class Inventory{
 
 
 
+
 int main(){
-    Item test(12,"test");
+    string name;
+    int weight;
 
     try{
-        Inventory test(7,4);
+        Inventory test1(80,20);
+        Item test("sword", 10);
+        Item test2("staff", 10);
+        Item test3("Bow", 30);
+        Item test4("Helmet", 80);
+        test1.DepositItem(test);
+        test1.DepositItem(test2);
+        test1.DepositItem(test3);
+        test1.DepositItem(test4);
+        cout<<test1.GetItems()<<endl;
+        cout<<"Total Weight: " << test1.SumWeight();
+
     }
     catch(const char* msg){
         cerr << msg << endl;
     }
-
-
-
+    
     return 0;
 }
