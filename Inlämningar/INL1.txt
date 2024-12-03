@@ -42,8 +42,8 @@ själv ska kunna ändra på den.
 
 --Inventory::withdrawItem(string):
 Det ska finnas en metod som tar ett namn och returnerar en Item 
-med samma namn. Metoden ska också ta bort föremålet från 
 föremålslistan. Om föremålet inte hittas ska exception kastas.
+med samma namn. Metoden ska också ta bort föremålet från 
 
 --Inventory::depositItem(Item&):
 Det ska finnas en metod som tar en Item-referens som argument 

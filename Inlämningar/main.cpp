@@ -21,15 +21,26 @@ class Item{
             throw "Item weight is below 0\n";
         }else{
             ItemWeight = weight;
-            ItemName = name;}
+            ItemName = name;
+        }
     }
 
-    string ItemDetails(){
-        return "Item: " + ItemName + " " + to_string(ItemWeight) + "kg";
-    }
-
+    //Getters
     float GetItemWeight(){
         return ItemWeight;
+    }
+    string GetItemName(){
+        return ItemName;
+    }
+
+    //Setters
+    float SetItemWeight(){
+
+        return 0;
+    }
+    string SetItemName(){
+
+        return 0;
     }
 
 };
@@ -42,9 +53,9 @@ class Inventory{
     float WeightCapacity;
     int MaxItems;
     vector<Item> items;
-
+    
     float TotalWeight;
-
+    int TotalItems;
  public:
 
     //Skapar egen vikt och max items
@@ -54,7 +65,7 @@ class Inventory{
         if(XmxWeight < 0){
             throw "weight capacity is invalid\n";
         }else if(XmxItems % 8 != 0){
-            throw "The maximum capacity is not divisible by 8\n";
+            throw "The maximum item capacity is not divisible by 8\n";
         }else{ 
             WeightCapacity = XmxWeight;
             MaxItems = XmxItems;
@@ -63,39 +74,73 @@ class Inventory{
     }
 
 
-    string WithdrawItem(string){
-        
-        return 0;
-    }
+    string WithdrawItem(string Name){
 
-
-    string DepositItem(Item& item){
-        //TODO: fix check if can add item
-        
-        items.push_back(item);
-        return "";
-        
-    }
-
-    string GetItems(){
-        string Total = "";
-        cout << "Inventory\n";
-
-        for(int i = 0; i < items.size(); i++){
-            Total +=items[i].ItemDetails() + "\n";
+        for(int i = 0; i < items.size(); i++){ 
+           if(items[i].GetItemName() == Name){
+                items.erase(items.begin()+ i);
+                cout <<"Withdrew: " << Name <<endl;
+                return Name;
+           }
         }
+     
+        
+        return "Item" + Name + "Item dose not exist.";
+    }
 
-        return Total;
+
+    void DepositItem(Item& item){
+        //TODO: fix check if can add item
+        //TODO: enum
+            if(GetWeightCap() >= GetSumWeight() + item.GetItemWeight() || GetMaxItemCap ){
+                items.push_back(item);
+                TotalWeight += item.GetItemWeight();
+            }else{cout<<item.GetItemName()<<" too heavy to store"<<endl;
+            }        
+    }
+
+    float GetItems(){
+
+        cout<<"Inventory"<<endl;
+        for(int i = 0; i < items.size(); i++){
+            cout<<items[i].GetItemName()<<" "<<items[i].GetItemWeight()<<"Kg"<<endl;
+            TotalItems = items[i].GetItemName();
+        }
+        
+        return items.size();
     }
 
     float SumWeight(){
-        float sum;
+        float sum = 0;
         TotalWeight = sum;
-        for(int i = 0; i < items.size(); i++){
-          sum += items[i].GetItemWeight();
+        for(float i = 0; i < items.size(); i++){
+         sum += items[i].GetItemWeight();
         }
 
+        cout<<"Total Weight: ";
         return sum;
+    }
+
+    int SumItems(){
+        int Itot = 0;
+        TotalItems = Itot;
+        for(float i = 0; i < items.size(); i++){
+         Itot += items[i].GetItems();
+        }
+
+        return Itot;
+    }
+
+    //Getters
+    float GetWeightCap(){
+        return WeightCapacity;
+    }
+
+    float GetSumWeight(){
+        return TotalWeight;
+    }
+    int GetMaxItemCap(){
+        return MaxItems;
     }
 };
 
@@ -107,26 +152,47 @@ class Inventory{
 
 
 int main(){
-    string name;
-    int weight;
+   
 
     try{
-        Inventory test1(80,20);
-        Item test("sword", 10);
-        Item test2("staff", 10);
-        Item test3("Bow", 30);
-        Item test4("Helmet", 80);
+        int MaxItems = 8;
+        float MaxWeight = 1000;
+        Inventory test1(MaxItems,MaxWeight);
+        cout<<"Weight cap "<<test1.GetWeightCap()<<endl;
+        Item test("sword", 100);
+        Item test2("staff", 100);
+        Item test3("Bow", 100.2);
+        Item test4("Helmet", 80.10);
+        Item test5("Boots",10);
+        Item test6("Gun",10);
+        Item test7("Fist",10);
+        Item test8("Shield",10);
+        Item test9("Book",10);
+        Item test10("BackPack",10);
         test1.DepositItem(test);
         test1.DepositItem(test2);
         test1.DepositItem(test3);
         test1.DepositItem(test4);
-        cout<<test1.GetItems()<<endl;
-        cout<<"Total Weight: " << test1.SumWeight();
+        test1.DepositItem(test5);
+        test1.DepositItem(test6);
+        test1.DepositItem(test7);
+        test1.DepositItem(test8);
+        test1.DepositItem(test9);
+        test1.DepositItem(test10);
 
+        cout<<test1.GetItems()<<endl;
+        cout<<test1.SumWeight()<<endl<<endl;
+
+        //Withdraw
+        test1.WithdrawItem("staff");
+        cout<<test1.GetItems()<<endl;
+        cout<<test1.SumWeight()<<endl;
     }
     catch(const char* msg){
         cerr << msg << endl;
     }
+
+ 
     
     return 0;
 }
