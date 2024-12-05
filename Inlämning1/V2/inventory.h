@@ -1,7 +1,12 @@
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <cctype>
+#include <windows.h>
 
 using namespace std;
 
@@ -77,10 +82,6 @@ class Inventory{
 
 
     Checker DepositItem(Item& item){
-        //TODO: fix check if can add item
-        //TODO: enum
-        //TODO: if items > maxitem = break
-       
 
         if(GetSumWeight() + item.GetItemWeight() > GetWeightCap()){
 
@@ -103,21 +104,15 @@ class Inventory{
         items.push_back(item);
         TotalWeight +=item.GetItemWeight();
         return NICE;
-        
             
-            
-            
-        // if(GetWeightCap() >= GetSumWeight() + item.GetItemWeight()){
-        //     items.push_back(item);
-        //     TotalWeight += item.GetItemWeight();
-        // }else{cout<<item.GetItemName()<<" too heavy to store"<<endl;}     
+             
     }
 
     float GetItems(){
 
-        cout<<"Inventory"<<endl;
+        cout<<"\nInventory"<<endl;
         for(int i = 0; i < items.size(); i++){
-            cout<<items[i].GetItemName()<<" "<<items[i].GetItemWeight()<<"Kg"<<endl;
+            cout<<"-"<<items[i].GetItemName()<<" "<<items[i].GetItemWeight()<<"Kg"<<endl;
         }
         cout<<"\nTotal Items: ";
         return items.size();
@@ -148,7 +143,7 @@ void AddItemToInventory(Inventory& inv, Item& item){
     
     //capture result
     Checker a = inv.DepositItem(item);
-    
+
     if(a == OVERWEIGHT){
         cout << "Could not add " << item.GetItemName() << endl;
         cout <<"Inventory is too heavy"<<endl;
@@ -163,50 +158,7 @@ void AddItemToInventory(Inventory& inv, Item& item){
 }
 
 
-int main(){
-   
-   
-    try{
-        
-        int MaxItems = 8;
-        float MaxWeight = 1200;
 
-        Inventory test1(MaxItems,MaxWeight);
-        cout<<"Weight cap "<<test1.GetWeightCap()<<endl;
-        Item test("-Sword", 10);
-        Item test2("-Staff", 40);
-        Item test3("-Bow", 30.2);
-        Item test4("-Helmet", 20.10);
-        Item test5("-Boots",10.83);
-        Item test6("-Gun",10);
-        Item test7("-Fist",10);
-        Item test8("-Shield",10);
-        Item test9("-Book",10);
-        Item test10("-BackPack",10);
-       
-       AddItemToInventory(test1 , test);
-       AddItemToInventory(test1 , test2);
-       AddItemToInventory(test1 , test3);
-       AddItemToInventory(test1 , test4);
-       AddItemToInventory(test1 , test5);
-       AddItemToInventory(test1 , test6);
-       AddItemToInventory(test1 , test7);
-       AddItemToInventory(test1 , test8);
-       AddItemToInventory(test1 , test9);
-       AddItemToInventory(test1 , test10);
-       cout<<"\n"<<test1.GetItems()<<"\n";
-       cout<<"Total weight: "<<test1.SumWeight()<<endl;
 
-        //Withdraw
-        test1.WithdrawItem("-Staff");
-        cout<<test1.GetItems()<<endl;
+#endif
 
-    }
-    catch(const char* msg){
-        cerr << msg << endl;
-    }
-
- 
-    
-    return 0;
-}
