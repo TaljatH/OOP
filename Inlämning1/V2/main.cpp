@@ -6,11 +6,12 @@ void UI(){
         <<"1- Deposit Items"<<endl
         <<"2- Withdraw Items"<<endl
         <<"3- View Items"<<endl
-        <<"4- Exit"<<endl;
+        <<"4- Exit"<<endl
+        <<"Input: ";
 }
 
 int main(){
-   try{
+    try{
 
     int weight;
     string name;
@@ -29,59 +30,65 @@ int main(){
     
     bool game = true;
     while(game){
-        int MenuChoice;
-        UI();
-        Item a("", 0);
-        if(cin>>MenuChoice){ 
-            switch(MenuChoice){
-                case 1: 
-                    system("cls");
-                    cout<<"Item Name: ";
-                    cin>>name;
-                    //ToUpper
-                     for (char& c : name){
-                     c = toupper(c);}
-                    
-                    cout<<"Item weight: ";
-                    cin>>(weight);
-                    
-                    a = Item(name,weight);
-                    AddItemToInventory(inv,a);
-            break;
+        //En till Exception för att inte break loop
+        try{
 
-                case 2:
-                
-                    cout<<"Item name: ";
-                    cin>>withdraw;
-                    //ToUpper
-                    for(char& c : withdraw){
-                        c = toupper(c);
-                    }
-                    inv.WithdrawItem(withdraw);
-            break;
-                
-                case 3:
-                    cout<<inv.GetItems()<<endl
-                        <<"Total Weight: "<<inv.GetSumWeight()<<endl;
-            break;
-                case 4:
-                cout<<"Bye";
-                game = false;
-            break;
+            int MenuChoice;
+            UI();
+            Item a("", 0);
+            if(cin>>MenuChoice){ 
+                switch(MenuChoice){
+                    case 1: 
+                        system("cls");
+                        cout<<"Item Name: ";
+                        cin>>name;
+                        //ToUpper
+                         for (char& c : name){
+                         c = toupper(c);}
 
-                default:
-                cout<<"Invalid input"<<endl;
-            break;
-            }  
+                        cout<<"Item weight: ";
+                        cin>>(weight);
+
+                        a = Item(name,weight);
+                        AddItemToInventory(inv,a);
+                 break;
+
+                    case 2:
+
+                        cout<<"Item name: ";
+                        cin>>withdraw;
+                        //ToUpper
+                        for(char& c : withdraw){
+                            c = toupper(c);
+                        }
+                        inv.WithdrawItem(withdraw);
+                    break;
+
+                    case 3:
+                        cout<<inv.GetItems()<<endl
+                            <<"Total Weight: "<<inv.GetSumWeight()<<"Kg"<<endl;
+                    break;
+                    case 4:
+                    cout<<"Bye";
+                    game = false;
+                    break;
+
+                    default:
+                    cout<<"Invalid input"<<endl;
+                    break;
+                }  
             }else{
-                cout<<"\tINVALID INPUT"<<endl;
-                cin.clear();
-                cin.ignore();
-            }
+                    cout<<"\tINVALID INPUT"<<endl;
+                    cin.clear();
+                    cin.ignore();
+                }
+
+         }catch(const char* msg){
+            cerr << "ERROR: " <<msg <<endl;}
+            
         }
 
-    }
-    catch(const char* msg){
+    }catch(const char* msg){
         cerr << msg << endl;
     }
     
