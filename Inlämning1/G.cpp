@@ -67,7 +67,7 @@ class Inventory{
         for(int i = 0; i < items.size(); i++){ 
            if(items[i].GetItemName() == Name){
                 items.erase(items.begin()+ i);
-                cout <<"Withdrew: " << Name <<endl;
+                cout <<"\nWithdrew: " << Name <<endl;
            }
         }
      
@@ -102,15 +102,8 @@ class Inventory{
         
         items.push_back(item);
         TotalWeight +=item.GetItemWeight();
+
         return NICE;
-        
-            
-            
-            
-        // if(GetWeightCap() >= GetSumWeight() + item.GetItemWeight()){
-        //     items.push_back(item);
-        //     TotalWeight += item.GetItemWeight();
-        // }else{cout<<item.GetItemName()<<" too heavy to store"<<endl;}     
     }
 
     float GetItems(){
@@ -166,7 +159,7 @@ int main(){
     try{
         
         int MaxItems = 8;
-        float MaxWeight = 1200;
+        float MaxWeight = 300;
 
         Inventory test1(MaxItems,MaxWeight);
         cout<<"Weight cap "<<test1.GetWeightCap()<<endl;
@@ -176,10 +169,12 @@ int main(){
         Item test4("-Helmet", 20.10);
         Item test5("-Boots",10.83);
         Item test6("-Gun",10);
-        Item test7("-Fist",10);
-        Item test8("-Shield",10);
-        Item test9("-Book",10);
+        Item test7("-Fist",100);
+        Item test8("-Shield",300);
+        Item test9("-Book",100);
         Item test10("-BackPack",10);
+        Item test11("-Cape",10);
+        Item test12("-Potion",100);
        
        AddItemToInventory(test1 , test);
        AddItemToInventory(test1 , test2);
@@ -191,6 +186,8 @@ int main(){
        AddItemToInventory(test1 , test8);
        AddItemToInventory(test1 , test9);
        AddItemToInventory(test1 , test10);
+       AddItemToInventory(test1 , test11);
+       AddItemToInventory(test1 , test12);
        cout<<"\n"<<test1.GetItems()<<"\n";
        cout<<"Total weight: "<<test1.SumWeight()<<endl;
 

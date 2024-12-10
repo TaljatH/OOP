@@ -19,11 +19,13 @@ int main(){
 
    
 
-    //Inventory
+    //Inventory1
     int MaxItems,MaxCap;
     MaxItems = 8;
     MaxCap = 100;
     Inventory inv(MaxItems,MaxCap);
+
+    vector<Item> List = inv.GetItems();
 
     cout<<"\n\tInventory"<<endl;
     cout<<"Slots: "<<MaxItems<<endl<<"Max Inventory weight: "<<MaxCap<<"Kg"<<endl;
@@ -46,11 +48,11 @@ int main(){
                          for (char& c : name){
                          c = toupper(c);}
 
-                        cout<<"Item weight: ";
-                        cin>>(weight);
+                         cout<<"Item weight: ";
+                         cin>>(weight);
 
-                        a = Item(name,weight);
-                        AddItemToInventory(inv,a);
+                         a = Item(name,weight);
+                         AddItemToInventory(inv,a);
                  break;
 
                     case 2:
@@ -65,8 +67,11 @@ int main(){
                     break;
 
                     case 3:
-                        cout<<inv.GetItems()<<endl
-                            <<"Total Weight: "<<inv.GetSumWeight()<<"Kg"<<endl;
+                        
+                         for(int i = 0; i < List.size(); i++){
+                         cout<<"-"<<List[i].GetItemName()<<" "<<List[i].GetItemWeight()<<"Kg"<<endl;
+                         }
+                        cout <<"Total Weight: "<<inv.GetSumWeight()<<"Kg"<<endl;
                     break;
                     case 4:
                     cout<<"Bye";

@@ -1,0 +1,65 @@
+Pokemonspel
+
+Du ska skapa ett system som kan simulera en Pokemonstrid, liknande 
+till spelen utgivna av Nintendo. En Pokemon ska kunna attackera en 
+annan Pokemon, och resultatet av interaktionen ska skrivas ut i 
+konsollen. (Systemet ska endast kunna hantera Moves som gör skada, 
+inga komplicerade Moves.)
+
+Till uppgiften får du ett projektskelett. Type.h och main.cpp är 
+redan färdiga och behöver inte ändras eller uppdateras. Resten 
+innehåller funktionsnamn (men inte nödvändigtvis returvärden 
+och parametrar) som ni behöver specificera och implementera, 
+samt beskrivningar på variabler och andra betéenden klassen ska 
+uppfylla.
+
+Alla fält inuti en klass ska initieras i klassens konstruktor, 
+såvida ingenting annat anges. Du får lägga till hur många fält 
+och metoder till klasserna som du vill så länge alla krav 
+fortfarande uppfylls.
+
+En del metoder saknar parametrar och returvärde. Följ beskrivningarna 
+och implementera dom korrekt. Ifall en metod redan har ett 
+funktionshuvud får det funktionshuvudet inte ändras.
+ 
+Ladda ned filerna och sammanställ dom i ett projekt. Projektet 
+ska kompilera med filerna som ni får dom, men resten saknas. 
+Inget skrivs ut ifall det körs.
+
+Bekanta dig med projektstrukturen och uppgiften innan du börjar 
+koda. En grundläggande förståelse av hur strider i Pokemon 
+fungerar kan också vara hjälpsamt.
+
+Det är upp till dig att bestämma om det som du lägger till är 
+private, protected, eller public. Var redo att diskutera dina 
+val vid redovisning.
+
+-- G
+
+--Klasserna:
+Implementera klasserna enligt specifikationerna som står inuti dom.
+
+--UML:
+Under examinationen ska du visa ett UML-diagram för hela ditt 
+program. Du behöver inte ha med klassernas metoder i det 
+diagrammet. 
+
+--VG:
+Kommer snart!
+
+--
+
+Uppgiften redovisas muntligt till Niklas på valfri ledig 
+labbperiod. Var beredd på att förklara och diskutera din kod. 
+Om Niklas godkänner din kod ska du därefter skicka in filerna 
+på Totara, denna gång i en zip- eller rar-fil. 
+
+Ifall kursen är slut finns det möjlighet att redovisa 
+över internet inom rimlig tid. Kontakta Niklas genom mobil i 
+sådant fall.
+
+Ni får arbeta i par, i vilket fall båda ska lämna in på Totara.
+
+Slutbetyget i kursen bestäms av INL2.
+
+Lycka till!

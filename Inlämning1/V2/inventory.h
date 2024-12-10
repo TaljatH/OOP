@@ -66,22 +66,31 @@ class Inventory{
 
     }
 
-
-    string WithdrawItem(string Name){
+    //Ska return item.
+    Item WithdrawItem(string Name){
 
         for(int i = 0; i < items.size(); i++){ 
            if(items[i].GetItemName() == Name){
+                
+                Item WithdrawItem = items[i];
+                
                 items.erase(items.begin()+ i);
-                cout <<"Withdrew: " << Name <<endl;
-           }
-        }
+                
+                return WithdrawItem;
+            }
      
-        
-        return Name;
+            throw "Item not found in inventory\n";
+        }
     }
 
 
     Checker DepositItem(Item& item){
+
+        if(GetSumWeight() > GetWeightCap() && items.size() < GetMaxItemCap()){
+
+         return ITEMTOOHEAVYTOOMANY;
+         
+        }
 
         if(GetSumWeight() + item.GetItemWeight() > GetWeightCap()){
 
@@ -95,27 +104,17 @@ class Inventory{
 
         }
 
-        if(GetSumWeight() > GetWeightCap() && items.size() < GetMaxItemCap()){
-
-         return ITEMTOOHEAVYTOOMANY;
-         
-        }
         
         items.push_back(item);
         TotalWeight +=item.GetItemWeight();
-        return NICE;
-            
-             
+        
+        return NICE;   
     }
 
-    float GetItems(){
-
-        cout<<"\nInventory"<<endl;
-        for(int i = 0; i < items.size(); i++){
-            cout<<"-"<<items[i].GetItemName()<<" "<<items[i].GetItemWeight()<<"Kg"<<endl;
-        }
-        cout<<"\nTotal Items: ";
-        return items.size();
+    //Ska inte va float och ska inte skriva ut något.
+    vector<Item> GetItems(){
+        vector<Item> a = items;
+        return a;
     }
 
     float SumWeight(){
@@ -144,6 +143,9 @@ void AddItemToInventory(Inventory& inv, Item& item){
     //capture result
     Checker a = inv.DepositItem(item);
 
+    if(a == ITEMTOOHEAVYTOOMANY){
+        cout << "Inventroy reached max items and inventory is too heavy"<<endl;
+    }
     if(a == OVERWEIGHT){
         cout << "Could not add " << item.GetItemName() << endl;
         cout <<"Inventory is too heavy"<<endl;
@@ -151,9 +153,6 @@ void AddItemToInventory(Inventory& inv, Item& item){
     if(a == MAXITEMS){
         cout << "Could not add " << item.GetItemName() << endl;
         cout << "Inventory reached max items "<<endl;
-    }
-    if(a == ITEMTOOHEAVYTOOMANY){
-        cout << "Inventroy reached max items and inventory is too heavy"<<endl;
     }
 }
 
