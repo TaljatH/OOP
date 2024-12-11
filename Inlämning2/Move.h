@@ -13,9 +13,13 @@ class Pokemon; //behövs för perform()
 * Klassen är abstrakt.
 */
 
+
 class Move{
 private:
 protected:
+    virtual void name() = 0;
+    virtual void type() = 0;
+    virtual int power() = 0;
 
     // Ska vara rent virtuell, och därefter implementeras av PhysicalMove och SpecialMove.
     //execute()

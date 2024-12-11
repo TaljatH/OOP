@@ -11,7 +11,7 @@ Klassen ska även ha följande fält:
 
 attack, health, specialAttack, defence, specialDefence.
 
-De ska alla vara const int. De får inte vara negativa eller 0, 
+De ska alla vara int. De får inte vara negativa eller 0, 
 då ska exception kastas under initiering.
 */
 
