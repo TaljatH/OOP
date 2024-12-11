@@ -11,7 +11,7 @@ void main() {
 	PhysicalMove payback("Payback", DARK, 50);
 	PhysicalMove earthquake("Earthquake", GROUND, 100);
 
-	Pokemon* pikachu = new Pokemon("Pikachu", ELECTRIC, &quickAttack, &swift, &ironTail, &thunder, 30, 90, 90, 60, 50);
+	Pokemon* pikachu = new Pokemon("Pikachu", ELECTRIC, &quickAttack, &swift, &ironTail, &thunder, /*hp*/30,/*atk*/ 90, 90, /*def*/60, 50);
 	Pokemon* gengar = new DualTypePokemon("Gengar", POISON, GHOST, &thunder, &shadowBall, &payback, &earthquake, 40, 80, 100, 80, 80);
 
 	//utskrifterna kan skiljas beroende på formel för damage.
