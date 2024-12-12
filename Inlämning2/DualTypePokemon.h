@@ -14,11 +14,13 @@ class DualTypePokemon : public Pokemon {
 private:
     std::string Name;
     int Attack, Defence, Health, SpecialDefence, SpecialAttack;
+    Type type1;
+    Type type2;
 
-    const Move* Move1;
-    const Move* Move2;
-    const Move* Move3;
-    const Move* Move4;
+    const Move* move1;
+    const Move* move2;
+    const Move* move3;
+    const Move* move4;
     
 protected:
 public:
@@ -27,6 +29,7 @@ public:
 
     // Klassens konstruktor. Den ska initiera klassen.
     DualTypePokemon(const std::string& name, const Type type1, const Type type2, const Move* move1, const Move* move2, const Move* move3, const Move* move4, const int health, const int attack, const int spAttack, const int defense, const int spDefense) 
+    :move1(move1),move2(move2),move3(move3),move4(move4),type1(type1),type2(type2)
     {
 
         if(health <= 0){
@@ -48,18 +51,20 @@ public:
         if(defense <= 0){
             throw "Pokemon has no defense";
         }else{Defence = defense;}
-
-        Name = name;
-        Move1 = move1;
-        Move2 = move2;
-        Move3 = move3;
-        Move4 = move4;
-
     }
 
-    // Ska fungera på samma sätt som originalet, förutom att logiken ska vara 
-    // Multiplier = Multiplier1 * Multiplier2, där Multiplier1 är "damage multiplier" 
-    // för färsta typen och Multiplier2 är för den andra typen.
+    // x Ska fungera på samma sätt som originalet, förutom att logiken ska vara 
+    // x Multiplier = Multiplier1 * Multiplier2, där Multiplier1 är "damage multiplier" 
+    // x för första typen och Multiplier2 är för den andra typen.
     // 
-    //calculateDamageMultiplier();
+    int calculateDamageMultiplier(Pokemon& target, Move& power){
+       int damage = (((power.GetPower() * Attack /  target.getPokemonDefence()) / 50) + 2) * type1 * type2;
+    }
+
+
+    //Getter
+    int getDualTypeDef(){return Defence;}
+    int getDualAtk(){return Attack;}
+    int getSpDualAk(){return SpecialAttack;}
+    int getSpDualDef(){return SpecialDefence;}
 };

@@ -20,35 +20,34 @@ class Pokemon; //behövs för perform()
 
 class Move{
 private:
-    std::string Name;
-    std::string ntype;
+    std::string name;
     int Power;
+    Type type;
 
 protected:
     //vad? Ska vara rent virtuell, och därefter implementeras av PhysicalMove och SpecialMove.
     //execute()
 
-    virtual void ExecuteMove() = 0;
+    virtual void execute(Pokemon* attacker , DualTypePokemon* defender) = 0;
 
 public:
 
     // Klassens konstruktor. Den ska initiera klassen.
     // Om power är negativ ska exception kastas.
-    Move(const std::string& name, const Type type, const int power){
+    Move(const std::string& name, const Type type, const int power)
+    :name(name),type(type)
+    {
         if(power < 0){
             throw "Your pokemon power is negative";
-        }else{Power = power;}
-
-        Name = name; 
-        ntype = type;
+        }else{Power = power;}   
     }
 
     Move() {} //finns endast för kompilering, kan tas bort senare.
 
-    // x Funktionen ska ta 2 Pokemon-pekare som argument, en som är en 
-    // x attackerare och en försvarare.                      
+    // Funktionen ska ta 2 Pokemon-pekare som argument, en som är en 
+    // attackerare och en försvarare.                      
     // 
-    // x Funktionen ska skriva ut till konsollen vilken Pokemon som använder vilken Move. 
+    // Funktionen ska skriva ut till konsollen vilken Pokemon som använder vilken Move. 
     // 
     // Efter det ska den kalla på execute(). execute() ska dock endast kallas 
     // om antingen den attackerandes eller den försvarandes health inte är 0.
@@ -61,8 +60,8 @@ public:
     // 
     //perform()
 
-    void PokePoint(Pokemon* Attacker , DualTypePokemon* Defender){
-        std::cout<<Attacker->GetPokemonName()<<" used: " << Name;
+    void pokeMove(Pokemon* Attacker , DualTypePokemon* Defender){
+        std::cout<<Attacker->getPokemonName()<<" used: " << name;
     }
 
 

@@ -24,6 +24,7 @@ private:
     int Attack , Health , SpecialAttack , Defence , SpecialDefence;
 
     std::string Name;
+    Type type;
 
     const Move* move1;
     const Move* move2;
@@ -36,7 +37,7 @@ public:
     // x Klassens konstruktor. Den ska initiera klassen.
     // x Ifall något av Pokemonens "stats" (ex health eller attack) är 0 eller negativt ska exception kastas.
     Pokemon(const std::string& name, const Type type, const Move* move1, const Move* move2, const Move* move3, const Move* move4, const int health, const int attack, const int spAttack, const int defense, const int spDefense)
-    :move1(move1), move2(move2), move3(move3), move4(move4)
+    :move1(move1), move2(move2), move3(move3), move4(move4),type(type)
     {
         if(health <= 0){
             throw "Pokemons health is 0";
@@ -64,7 +65,7 @@ public:
 
     // Funktionerna ska göra så att Pokemonen utför respektive Move på en Pokemon.
     void executeMove1(Pokemon* target) {
-       move1 -> PokePoint()
+        
     }
     void executeMove2(Pokemon* target) {
 
@@ -91,12 +92,14 @@ public:
     // 
 
     int calculateDamageMultiplier(){
-        // int damage = (((Power * Attack / TargetDefence) / 50) + 2) * type
-    };
+       type;
+    }
 
 
     //Getters
-    std::string GetPokemonName(){return Name;}
-
-    // Damage = (((Power x Atk / target defence) / 50) + 2) x Type1 x Type2
+    std::string getPokemonName(){return Name;}
+    int getPokemonDefence(){return Defence;}
+    int getAtk(){return Attack;}
+    int getSpAtk(){return SpecialAttack;}
+    int getSpAtk(){return SpecialDefence;}
 };

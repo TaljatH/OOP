@@ -5,23 +5,28 @@
 
 class PhysicalMove : public Move{
 private:
+    std::string name;
+    int power;
+    Type type;
+
 protected:
 public:
 
     //Klassens konstruktor. Den ska initiera klassen.
     PhysicalMove(const std::string& name, const Type type, const int power)
-    {}
+    :name(name),type(type),power(power){}
 
-    /*execute() ska räkna ut hur mycket skada denna Move ska
-    göra på försvarande Pokemon. Du bestämmer själv exakt vilken formel
-    funktionen ska använda sig av, så länge du kan motivera din design
-    och så länge följande variabler används (men samma formel för SpecialMove):
+    /*x execute() ska räkna ut hur mycket skada denna Move ska
+    x göra på försvarande Pokemon. Du bestämmer själv exakt vilken formel
+    x funktionen ska använda sig av, så länge du kan motivera din design
+    x och så länge följande variabler används (men samma formel för SpecialMove):
 
-    power, attackersAttack, defendersDefence, multiplier
+    x power, attackersAttack, defendersDefence, multiplier
 
-    PhysicalMove-klassen ska använda sig utav attack och defence,
-    medans SpecialMove ska använda sig av specialAttack och
-    specialDefence. Funktionen ska skriva ut:
+    x PhysicalMove-klassen ska använda sig utav attack och defence,
+    x medans SpecialMove ska använda sig av specialAttack och
+    specialDefence. 
+    Funktionen ska skriva ut:
 
     "It doesn't affect {försvarandePokemon}."
     om multiplier är 0,
@@ -32,5 +37,13 @@ public:
     "It's super effective!"
     om multiplier är över 1.*/
     //execute() override
+
+
+    void execute(Pokemon* attacker,DualTypePokemon* defender) override{
+
+        int phyDamage = (((power * attacker->getAtk() / defender->getDualTypeDef()) / 50) + 2);
+
+
+    }
 
 };
