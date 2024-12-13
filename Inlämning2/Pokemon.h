@@ -24,13 +24,13 @@ private:
     int Attack , Health , SpecialAttack , Defence , SpecialDefence;
 
     std::string Name;
-    Type type;
 
     const Move* move1;
     const Move* move2;
     const Move* move3;
     const Move* move4;
 protected:
+    Type type;
 public:
 
 
@@ -65,7 +65,7 @@ public:
 
     // Funktionerna ska göra så att Pokemonen utför respektive Move på en Pokemon.
     void executeMove1(Pokemon* target) {
-        
+        move1->perform(this, target);
     }
     void executeMove2(Pokemon* target) {
 
@@ -77,22 +77,32 @@ public:
 
     }
 
-    // Funktionen ska subtrahera Pokemonens hälsa med argumentet.
-    // Om detta skulle resultera i negative health ska health sättas till 0.
+    // x Funktionen ska subtrahera Pokemonens hälsa med argumentet.
+    // x Om detta skulle resultera i negative health ska health sättas till 0.
     // 
     //reduceHealth();
 
-    // Funktionen ska räkna ut "damage multiplier" mot sig själv, baserat 
-    // på ett argument som bestämmer attackerande typ.
-    // Ex. en FIRE-attack på en WATER-Pokemon är 0.5 (hälften) så effektiv.
-    // Funktionen ska använda sig getDamageMultiplier() innanför Type.
+    int reduceHealth(int dmg){
+        Health -= dmg;
+
+        if(Health <= 0){
+            Health == 0;
+        }
+
+        return Health;
+    }
+
+    // x Funktionen ska räkna ut "damage multiplier" mot sig själv, baserat 
+    // x på ett argument som bestämmer attackerande typ.
+    // x Ex. en FIRE-attack på en WATER-Pokemon är 0.5 (hälften) så effektiv.
+    // x Funktionen ska använda sig getDamageMultiplier() innanför Type.
     // 
-    // Funktionen ska vara virtuell men INTE rent virtuell, då 
+    // x Funktionen ska vara virtuell men INTE rent virtuell, då 
     // dess beteende ska kunna överskrivas av DualTypePokemon.
     // 
 
-    int calculateDamageMultiplier(){
-       type;
+    virtual float getDamageMultiplier(Type attackerType) const{
+        return TypeChart::getDamageMultiplier(attackerType,type);
     }
 
 
@@ -101,5 +111,6 @@ public:
     int getPokemonDefence(){return Defence;}
     int getAtk(){return Attack;}
     int getSpAtk(){return SpecialAttack;}
-    int getSpAtk(){return SpecialDefence;}
+    int getSpDef(){return SpecialDefence;}
+    int getPokemonHp(){return Health;}
 };

@@ -25,25 +25,33 @@ public:
 
     x PhysicalMove-klassen ska använda sig utav attack och defence,
     x medans SpecialMove ska använda sig av specialAttack och
-    specialDefence. 
-    Funktionen ska skriva ut:
+    x specialDefence. 
+    x Funktionen ska skriva ut:
 
-    "It doesn't affect {försvarandePokemon}."
-    om multiplier är 0,
+    x "It doesn't affect {försvarandePokemon}."
+    x om multiplier är 0,
 
-    "It's not very effective..."
-    om multiplier är under 1 men inte 0,
+    x "It's not very effective..."
+    x om multiplier är under 1 men inte 0,
 
-    "It's super effective!"
-    om multiplier är över 1.*/
-    //execute() override
-
-
-    void execute(Pokemon* attacker,DualTypePokemon* defender) override{
-
-        int phyDamage = (((power * attacker->getAtk() / defender->getDualTypeDef()) / 50) + 2);
+    x "It's super effective!"
+    x om multiplier är över 1.*/
+    //x execute() override
 
 
+    void execute(Pokemon* attacker,Pokemon* defender) const override{
+
+        float phyDamage = (((power * attacker->getAtk() / defender->getPokemonDefence()) / 50) + 2 * attacker->getDamageMultiplier(type));
+
+        //Hp update
+        float newHP = defender->reduceHealth(phyDamage);
+
+        if(attacker->getDamageMultiplier(type) == 0){std::cout<<"It dosen't affect "<<defender->getPokemonName()<<std::endl;}
+
+        if(attacker->getDamageMultiplier(type) > 1 && attacker->getDamageMultiplier(type) < 0){std::cout<<"It's not very effective against "<<defender->getPokemonName()<<std::endl;}
+
+        if(attacker->getDamageMultiplier(type) > 1){std::cout<<"It's very effective against "<<defender->getPokemonName()<<std::endl;}
+        
     }
 
 };

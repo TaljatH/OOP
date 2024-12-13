@@ -2,7 +2,7 @@
 #include "SpecialMove.h"
 #include "DualTypePokemon.h"
 
-void main() {
+int main() {
 	PhysicalMove quickAttack("Quick Attack", NORMAL, 70);
 	SpecialMove swift("Swift", NORMAL, 60);
 	PhysicalMove ironTail("Iron Tail", STEEL, 100);
@@ -49,6 +49,8 @@ void main() {
 
 	delete pikachu;
 	delete gengar;
+
+	return 0;
 }
 
 
