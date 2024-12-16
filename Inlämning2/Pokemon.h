@@ -4,9 +4,6 @@
 #include "Type.h"
 #include "Move.h"
 
-//min include
-#include "DualTypePokemon.h"
-
 /*
  x Klassen ska ha 4 const Move pekare x   Fråga: en const Type samt ett icke-muterbart namn.
 
@@ -61,20 +58,20 @@ public:
 
     }
 
-    Pokemon() {} //finns endast för kompilering, kan tas bort senare.
+    //Pokemon() {} //finns endast för kompilering, kan tas bort senare.
 
     // Funktionerna ska göra så att Pokemonen utför respektive Move på en Pokemon.
     void executeMove1(Pokemon* target) {
         move1->perform(this, target);
     }
     void executeMove2(Pokemon* target) {
-
+        move2->perform(this, target);
     }
     void executeMove3(Pokemon* target) {
-
+        move3->perform(this, target);
     }
     void executeMove4(Pokemon* target) {
-
+        move4->perform(this, target);
     }
 
     // x Funktionen ska subtrahera Pokemonens hälsa med argumentet.

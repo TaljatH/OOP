@@ -3,6 +3,8 @@
 #include <string>
 #include "Move.h"
 
+#include "Pokemon.h"
+
 class SpecialMove : public Move {
 private:
     std::string name;
@@ -30,7 +32,7 @@ public:
         
         if(attacker->getDamageMultiplier(type) == 0){std::cout<<"It dosen't affect "<<defender->getPokemonName()<<std::endl;}
 
-        if(attacker->getDamageMultiplier(type) > 1 && attacker->getDamageMultiplier(type) < 0){std::cout<<"It's not very effective against "<<defender->getPokemonName()<<std::endl;}
+        if(attacker->getDamageMultiplier(type) < 1 && attacker->getDamageMultiplier(type) > 0){std::cout<<"It's not very effective against "<<defender->getPokemonName()<<std::endl;}
 
         if(attacker->getDamageMultiplier(type) > 1){std::cout<<"It's very effective against "<<defender->getPokemonName()<<std::endl;}
 

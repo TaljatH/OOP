@@ -5,6 +5,8 @@
 #include <string>
 #include "Type.h"
 
+#include "Pokemon.h"
+
 class Pokemon; //behövs för perform()
 
 /*
@@ -21,7 +23,7 @@ class Pokemon; //behövs för perform()
 class Move{
 private:
     std::string name;
-    int Power;
+    int power;
     Type type;
 
 protected:
@@ -35,14 +37,8 @@ public:
     //x Klassens konstruktor. Den ska initiera klassen.
     //x Om power är negativ ska exception kastas.
     Move(const std::string& name, const Type type, const int power)
-    :name(name),type(type)
-    {
-        if(power < 0){
-            throw "Your pokemon power is negative";
-        }else{Power = power;}   
-    }
-
-    Move() {} //finns endast för kompilering, kan tas bort senare.
+    :name(name),type(type),power(power)
+    {}
 
     // x Funktionen ska ta 2 Pokemon-pekare som argument, en som är en 
     // x attackerare och en försvarare.                      
@@ -60,27 +56,9 @@ public:
     // 
     // x perform() const
 
-    void perform(Pokemon* attacker , Pokemon* defender) const{
-        
-          if (attacker->getPokemonHp() <= 0) {
-            std::cout << attacker->getPokemonName() << " has fainted and cannot attack!\n";
-            return;
-        }
-        if (defender->getPokemonHp() <= 0) {
-            std::cout << defender->getPokemonName() << " has fainted and cannot be attacked!\n";
-            return;
-        }
-
-        execute(attacker,defender);
-    
-        if(defender->getPokemonHp() <=0){
-            std::cout << defender->getPokemonName() << " has fainted!\n";
-        }
-    }
+    void perform(Pokemon* attacker , Pokemon* defender) const;
 
 
-
-    //Getters
-    int GetPower(){return Power;}
+    Type GetType() const { return type; }
 
 };
