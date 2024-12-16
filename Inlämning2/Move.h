@@ -60,21 +60,21 @@ public:
     // 
     // x perform() const
 
-    void perform(Pokemon* Attacker , Pokemon* Defender) const{
+    void perform(Pokemon* attacker , Pokemon* defender) const{
         
-          if (Attacker->getPokemonHp() <= 0) {
-            std::cout << Attacker->getPokemonName() << " has fainted and cannot attack!\n";
+          if (attacker->getPokemonHp() <= 0) {
+            std::cout << attacker->getPokemonName() << " has fainted and cannot attack!\n";
             return;
         }
-        if (Defender->getPokemonHp() <= 0) {
-            std::cout << Defender->getPokemonName() << " has fainted and cannot be attacked!\n";
+        if (defender->getPokemonHp() <= 0) {
+            std::cout << defender->getPokemonName() << " has fainted and cannot be attacked!\n";
             return;
         }
 
-        execute(Attacker,Defender);
+        execute(attacker,defender);
     
-        if(Defender->getPokemonHp() <=0){
-            std::cout << Defender->getPokemonName() << " has fainted!\n";
+        if(defender->getPokemonHp() <=0){
+            std::cout << defender->getPokemonName() << " has fainted!\n";
         }
     }
 

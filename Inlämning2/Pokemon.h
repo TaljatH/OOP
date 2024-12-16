@@ -86,7 +86,7 @@ public:
         Health -= dmg;
 
         if(Health <= 0){
-            Health == 0;
+            Health = 0;
         }
 
         return Health;
