@@ -2,7 +2,7 @@
 #include <iostream>
 
 SpecialMove::SpecialMove(const std::string& name, const Type type, const int power)
-    : name(name), type(type), power(power) {}
+    : Move(name, type, power){}
 
 void SpecialMove::execute(Pokemon* attacker, Pokemon* defender) const {
     int spDamage = (((power * attacker->getSpAtk() / defender->getSpDef()) / 50) 
@@ -14,7 +14,7 @@ void SpecialMove::execute(Pokemon* attacker, Pokemon* defender) const {
         std::cout << "It doesn't affect " << defender->getPokemonName() << std::endl;
     }
 
-    if (attacker->getDamageMultiplier(type) < 1 && attacker->getDamageMultiplier(type) > 0) {
+    if (attacker->getDamageMultiplier(type) > 0 && attacker->getDamageMultiplier(type) < 1) {
         std::cout << "It's not very effective against " << defender->getPokemonName() << std::endl;
     }
 

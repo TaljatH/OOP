@@ -2,7 +2,7 @@
 #include <iostream>
 
 PhysicalMove::PhysicalMove(const std::string& name, const Type type, const int power)
-    : name(name), type(type), power(power) {}
+    : Move(name,type,power){ }
 
 void PhysicalMove::execute(Pokemon* attacker, Pokemon* defender) const {
     float phyDamage = (((power * attacker->getAtk() / defender->getPokemonDefence()) / 50) + 2 * attacker->getDamageMultiplier(type));
