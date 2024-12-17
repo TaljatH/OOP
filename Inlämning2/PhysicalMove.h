@@ -13,8 +13,7 @@ protected:
 public:
 
     //Klassens konstruktor. Den ska initiera klassen.
-    PhysicalMove(const std::string& name, const Type type, const int power)
-    :name(name),type(type),power(power){}
+    PhysicalMove(const std::string& name, const Type type, const int power);
 
     /*x execute() ska räkna ut hur mycket skada denna Move ska
     x göra på försvarande Pokemon. Du bestämmer själv exakt vilken formel
@@ -39,19 +38,8 @@ public:
     //x execute() override
 
 
-    void execute(Pokemon* attacker,Pokemon* defender) const override{
+    void execute(Pokemon* attacker,Pokemon* defender) const override;
 
-        float phyDamage = (((power * attacker->getAtk() / defender->getPokemonDefence()) / 50) + 2 * attacker->getDamageMultiplier(type));
-
-        //Hp update
-        float newHP = defender->reduceHealth(phyDamage);
-
-        if(attacker->getDamageMultiplier(type) == 0){std::cout<<"It dosen't affect "<<defender->getPokemonName()<<std::endl;}
-
-        if(attacker->getDamageMultiplier(type) > 1 && attacker->getDamageMultiplier(type) < 0){std::cout<<"It's not very effective against "<<defender->getPokemonName()<<std::endl;}
-
-        if(attacker->getDamageMultiplier(type) > 1){std::cout<<"It's very effective against "<<defender->getPokemonName()<<std::endl;}
-        
-    }
+       
 
 };
