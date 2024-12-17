@@ -5,8 +5,6 @@
 #include "Move.h"
 #include "Type.h"
 
-class Move; // Forward declaratio
-
 class Pokemon{
 private:
     //Stats

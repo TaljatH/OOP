@@ -11,7 +11,7 @@ class Move{
 private:
     std::string name;
     int power;
-    Type type;
+    Type typee;
 
 protected:
   
@@ -22,14 +22,10 @@ protected:
 public:
 
     Move(const std::string& name, const Type type, const int power)
-    :name(name),type(type),power(power)
-    {}
+    :name(name),typee(type),power(power){}
 
 
     void perform(Pokemon* attacker , Pokemon* defender) const;
-
-
-    Type GetType() const { return type; }
 
 
 

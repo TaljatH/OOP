@@ -5,7 +5,7 @@ SpecialMove::SpecialMove(const std::string& name, const Type type, const int pow
     : Move(name, type, power){}
 
 void SpecialMove::execute(Pokemon* attacker, Pokemon* defender) const {
-    int spDamage = (((power * attacker->getSpAtk() / defender->getSpDef()) / 50) 
+    float spDamage = (((power * attacker->getSpAtk() / defender->getSpDef()) / 50) 
                      + 2 * attacker->getDamageMultiplier(type));
 
     float newHP = defender->reduceHealth(spDamage);

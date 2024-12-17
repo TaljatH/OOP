@@ -1,12 +1,24 @@
-#include "DualTypePokemon.h"
-#include "Type.h"
+#include "SpecialMove.h"
+#include <iostream>
 
+SpecialMove::SpecialMove(const std::string& name, const Type type, const int power)
+    : Move(name, type, power){}
 
-DualTypePokemon::DualTypePokemon(const std::string& name, const Type type1, const Type type2, const Move* move1, const Move* move2, const Move* move3, const Move* move4, const int health, const int attack, const int spAttack, const int defense, const int spDefense)
-    : Pokemon(name, type1, move1, move2, move3, move4, health, attack, spAttack, defense, spDefense), type2(type2) {}
+void SpecialMove::execute(Pokemon* attacker, Pokemon* defender) const {
+    float spDamage = (((power * attacker->getSpAtk() / defender->getSpDef()) / 50) 
+                     + 2 * attacker->getDamageMultiplier(type));
 
-float DualTypePokemon::getDamageMultiplier(Type attackerType) const {
-    float m1 = TypeChart::getDamageMultiplier(attackerType, type);
-    float m2 = TypeChart::getDamageMultiplier(attackerType, type2);
-    return m1 * m2;
+    float newHP = defender->reduceHealth(spDamage);
+
+    if (attacker->getDamageMultiplier(type) == 0) {
+        std::cout << "It doesn't affect " << defender->getPokemonName() << std::endl;
+    }
+
+    if (attacker->getDamageMultiplier(type) > 0 && attacker->getDamageMultiplier(type) < 1) {
+        std::cout << "It's not very effective against " << defender->getPokemonName() << std::endl;
+    }
+
+    if (attacker->getDamageMultiplier(type) > 1) {
+        std::cout << "It's very effective against " << defender->getPokemonName() << std::endl;
+    }
 }
