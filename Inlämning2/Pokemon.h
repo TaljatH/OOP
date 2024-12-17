@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
-#include "Type.h"
 #include "Move.h"
+#include "Type.h"
 
 /*
  x Klassen ska ha 4 const Move pekare x   Fråga: en const Type samt ett icke-muterbart namn.
