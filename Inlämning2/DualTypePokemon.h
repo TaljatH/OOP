@@ -1,4 +1,3 @@
-#include "DualTypePokemon.h"
 #include "Type.h"
 
 

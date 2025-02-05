@@ -1,4 +1,3 @@
-#include "SpecialMove.h"
 #include <iostream>
 
 SpecialMove::SpecialMove(const std::string& name, const Type type, const int power)
