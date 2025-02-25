@@ -1,34 +1,33 @@
 #pragma once
 
+#include <iostream>
 
-#include "Pokemon.h"
+#include <string>
+#include "Type.h"
 
-class Pokemon;  // Forward declaration
-
+class Pokemon; 
 
 
 class Move{
 private:
     std::string name;
     int power;
-    Type typee;
+    Type type;
 
 protected:
-  
-
+    
     virtual void execute(Pokemon* attacker , Pokemon* defender) const = 0;
-
 
 public:
 
+   
     Move(const std::string& name, const Type type, const int power)
-    :name(name),typee(type),power(power){}
-
+    :name(name),type(type),power(power)
+    {}
 
     void perform(Pokemon* attacker , Pokemon* defender) const;
 
 
-
-    virtual ~Move() {} //destructor
+    Type GetType() const { return type; }
 
 };
