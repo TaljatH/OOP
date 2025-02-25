@@ -6,9 +6,7 @@
 
 class SpecialMove : public Move {
 private:
-    std::string name;
-    int power;
-    Type type;
+    
 protected:
 public:
 
@@ -17,19 +15,21 @@ public:
 
     void execute(Pokemon* attacker,Pokemon* defender) const override{
 
-        float spDamage =  (((power * attacker->getSpAtk() / defender->getSpDef()) / 50) + 2 * attacker->getDamageMultiplier(type));
-        spDamage *= attacker->getDamageMultiplier(type);
+        float mult = defender->getDamageMultiplier(type);
+
+        float spDamage =  (((power * attacker->getSpAtk() / defender->getSpDef()) / 40) + 2 * mult);
+        
         //Hp update
         float newHP = defender->reduceHealth(spDamage);
+    
 
-        
-        if(attacker->getDamageMultiplier(type) == 0){std::cout<<"It dosen't affect "<<defender->getPokemonName()<<std::endl;}
+        if(mult == 0){std::cout<<"It doesn't affect "<<defender->getPokemonName()<<std::endl;}
 
-        if (attacker->getDamageMultiplier(type) > 0 && attacker->getDamageMultiplier(type) < 1) {
+        if (mult > 0 && mult < 1) {
             std::cout << "It's not very effective against " << defender->getPokemonName() << std::endl;
         }
         
-        if(attacker->getDamageMultiplier(type) > 1){std::cout<<"It's very effective against "<<defender->getPokemonName()<<std::endl;}
+        if(mult > 1){std::cout<<"It's super effective against "<<defender->getPokemonName()<<std::endl;}
 
 
     }

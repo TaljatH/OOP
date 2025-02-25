@@ -10,12 +10,12 @@ class Pokemon;
 
 class Move{
 private:
-    std::string name;
-    int power;
-    Type type;
 
 protected:
-    
+    std::string name;
+    Type type;
+    int power;
+
     virtual void execute(Pokemon* attacker , Pokemon* defender) const = 0;
 
 public:

@@ -64,19 +64,9 @@ public:
         move4->perform(this, target);
     }
 
-    void faint() {
-        std::cout << Name << " has fainted!\n";
-        Health = 0; // Ensure health is 0
-    }
-
-    
 
     int reduceHealth(int dmg){
         Health -= dmg;
-
-        if(Health <= 0){
-            faint();
-        }
 
         return Health;
     }

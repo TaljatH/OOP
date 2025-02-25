@@ -25,9 +25,7 @@ public:
         float m1 = TypeChart::getDamageMultiplier(attackerType, type);
         float m2 = TypeChart::getDamageMultiplier(attackerType, type2);
     
-        if (m1 == 0 || m2 == 0) {
-            return 0;
-        }
+        
     
         return m1 * m2;
     }
